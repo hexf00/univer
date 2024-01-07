@@ -50,6 +50,7 @@ export const SetRangeBoldCommand: ICommand = {
         const commandService = accessor.get(ICommandService);
         const contextService = accessor.get(IContextService);
         const isCellEditorFocus = contextService.getContextValue(FOCUSING_EDITOR);
+        console.warn('SetRangeBoldCommand', isCellEditorFocus);
 
         if (isCellEditorFocus) {
             return commandService.executeCommand(SetInlineFormatBoldCommand.id);

@@ -44,6 +44,7 @@ export const ToolbarItem = forwardRef((props: IDisplayMenuItem<IMenuItem>, ref: 
     const [hidden, setHidden] = useState(false);
 
     const handleCommandExecuted = (commandId: string, params?: Record<string, any>) => {
+        console.warn('executeCommand', commandId, params);
         commandService.executeCommand(commandId, params);
         const textSelectionRenderManager = injector.get(ITextSelectionRenderManager);
         textSelectionRenderManager.focus();

@@ -65,6 +65,7 @@ export const SetStyleCommand: ICommand<ISetStyleCommandParams<unknown>> = {
     id: 'sheet.command.set-style',
 
     handler: async <T>(accessor: IAccessor, params: ISetStyleCommandParams<T>) => {
+        console.warn('SetStyleCommand', params);
         const univerInstanceService = accessor.get(IUniverInstanceService);
 
         const {
@@ -175,6 +176,7 @@ export const SetBoldCommand: ICommand = {
 
         const worksheet = accessor.get(IUniverInstanceService).getCurrentUniverSheetInstance().getActiveSheet();
         const { actualRow, actualColumn } = selection.primary;
+        console.warn('SetBoldCommand', actualRow, actualColumn);
         const currentlyBold = worksheet.getRange(actualRow, actualColumn).getFontWeight() === FontWeight.BOLD;
 
         const setStyleParams: ISetStyleCommandParams<BooleanNumber> = {
