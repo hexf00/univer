@@ -456,6 +456,7 @@ export class TextSelectionRenderManager extends RxDisposable implements ITextSel
 
     // Handle pointer down.
     eventTrigger(evt: IPointerEvent | IMouseEvent) {
+        console.warn('eventTrigger');
         if (!this._scene || !this._isSelectionEnabled) {
             return;
         }

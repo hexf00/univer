@@ -35,5 +35,15 @@ export class UniscriptController extends Disposable {
         this.disposeWithMe(menuService.addMenuItem(this._injector.invoke(UniscriptMenuItemFactory)));
         this.disposeWithMe(componentManager.register(ScriptPanelComponentName, ScriptEditorPanel));
         this.disposeWithMe(commandService.registerCommand(ToggleScriptPanelOperation));
+        console.warn('1234');
+
+        this.disposeWithMe(
+            commandService.onCommandExecuted((command) => {
+                // console.log(command);
+                if (command.id === 'sheet.operation.set-selections') {
+                    console.warn(command);
+                }
+            })
+        );
     }
 }

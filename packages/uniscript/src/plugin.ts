@@ -38,6 +38,7 @@ export class UniverUniscriptPlugin extends Plugin {
         @Inject(LocaleService) private readonly _localeService: LocaleService
     ) {
         super(PLUGIN_NAME);
+        console.warn('123');
     }
 
     override onStarting(injector: Injector): void {

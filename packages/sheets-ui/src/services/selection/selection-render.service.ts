@@ -678,6 +678,7 @@ export class SelectionRenderService implements ISelectionRenderService {
 
         this._upObserver = scene.onPointerUpObserver.add((upEvt: IPointerEvent | IMouseEvent) => {
             this._endSelection();
+            console.warn('getSelectionDataWithStyle', this.getSelectionDataWithStyle());
             this._selectionMoveEnd$.next(this.getSelectionDataWithStyle());
 
             // when selection mouse up, enable the short cut service

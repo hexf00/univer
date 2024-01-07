@@ -29,6 +29,7 @@ export interface IRangeSelectorProps {
 }
 
 export function RangeSelector(props: IRangeSelectorProps) {
+    console.warn('12345');
     const { onChange, onActive } = props;
     const [active, setActive] = useState(false);
     const editableRef = useRef<HTMLDivElement>(null);

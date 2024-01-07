@@ -336,6 +336,7 @@ export class SelectionManagerService implements IDisposable {
     }
 
     private _refresh(param?: ISelectionManagerSearchParam): void {
+        console.warn('refresh');
         this._selectionMoveEnd$.next(this._getSelectionDatas(param));
     }
 
