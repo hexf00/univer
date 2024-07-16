@@ -38,6 +38,7 @@ export class LifecycleService extends Disposable {
     constructor(@ILogService private readonly _logService: ILogService) {
         super();
 
+        console.log('LifecycleService.constructor');
         this._reportProgress(LifecycleStages.Starting);
     }
 
@@ -46,6 +47,12 @@ export class LifecycleService extends Disposable {
     }
 
     set stage(stage: LifecycleStages) {
+        console.log('LifecycleService.set stage', this.stage, stage , this._disposed);
+
+        if(this._disposed){
+            throw new Error('[LifecycleService]: cannot set new stage when the service is disposed!');
+        }
+
         if (stage < this.stage) {
             throw new Error('[LifecycleService]: lifecycle stage cannot go backward!');
         }
@@ -66,9 +73,15 @@ export class LifecycleService extends Disposable {
     }
 
     override dispose(): void {
+        console.log('LifecycleService.dispose', this.stage);
+
         this._lifecycle$.complete();
 
         super.dispose();
+    }
+
+    isDisposed(): boolean {
+        return this._disposed;
     }
 
     /**

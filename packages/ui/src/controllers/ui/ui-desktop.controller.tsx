@@ -73,14 +73,25 @@ export class DesktopUIController extends Disposable {
                 setTimeout(() => {
                     const allRenders = this._renderManagerService.getRenderAll();
 
+                    console.log('All renders', allRenders.size);
+
                     for (const [key, render] of allRenders) {
                         if (isInternalEditorID(key) || !((render) as RenderUnit).isRenderUnit) continue;
 
                         render.engine.setContainer(canvasElement);
                     }
 
+                    console.log('Rendered', this._lifecycleService.stage);
                     this._lifecycleService.stage = LifecycleStages.Rendered;
-                    setTimeout(() => this._lifecycleService.stage = LifecycleStages.Steady, STEADY_TIMEOUT);
+
+                    setTimeout(() => {
+                        console.log('Steady', this._lifecycleService.stage,this._lifecycleService.isDisposed());
+                        if(this._lifecycleService.isDisposed()){
+                            return;
+                        }
+
+                        this._lifecycleService.stage = LifecycleStages.Steady;
+                    }, STEADY_TIMEOUT);
                 }, 300);
             })
         );

@@ -1894,6 +1894,10 @@ export class PromptController extends Disposable {
     }
 
     private _getEditorObject() {
+        if(!this._univerInstanceService.getCurrentUniverDocInstance()){
+            // debugger;
+            return
+        }
         const editorUnitId = this._univerInstanceService.getCurrentUniverDocInstance()!.getUnitId();
         const editor = this._editorService.getEditor(editorUnitId);
         return editor?.render;

@@ -117,7 +117,15 @@ export class DocUIController extends Disposable {
     }
 
     private _initDocBackground() {
-        const firstDocUnitId = this._univerInstanceService.getAllUnitsForType<DocumentDataModel>(UniverInstanceType.UNIVER_DOC)[0].getUnitId();
+        console.warn('DocUIController._initDocBackground');
+
+        const firstDocUnit = this._univerInstanceService.getAllUnitsForType<DocumentDataModel>(UniverInstanceType.UNIVER_DOC)[0];
+        if (firstDocUnit === undefined) {
+            console.warn('No doc unit found');
+            return;
+        }
+
+        const firstDocUnitId = firstDocUnit.getUnitId();
         if (firstDocUnitId == null) {
             return;
         }
